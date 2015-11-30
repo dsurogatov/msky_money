@@ -1,0 +1,3 @@
+com/dsu/domain/model/Transmission.class
+com/dsu/domain/api/Idable.class
+com/dsu/domain/api/BaseEntity.class

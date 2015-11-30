@@ -1,0 +1,72 @@
+#!/bin/bash
+#
+
+catUrl=http://localhost:8080
+catUser=tomcat
+catPass=tomcat
+MAVEN_OPTS="-Xmx1024m -Xms512m"
+export MAVEN_OPTS
+
+usage()
+{
+cat << EOF
+usage: $0 options
+
+This script run the mavens entry
+
+OPTIONS:
+   -h      Show this message
+   -t      Include tests
+   -p      Maven instruction (package deploy redeploy undeploy)
+
+EOF
+}
+
+
+pack_flag=
+test_flag=true
+while getopts "tp:" OPTION
+do
+  case $OPTION in
+  h)
+	usage
+	exit 1;
+	;;
+  t)	
+	test_flag=false
+	;;
+  p)	
+	pack_flag=true
+	pack_val="$OPTARG"
+	;;
+  ?)	
+	usage 
+	exit
+	;;
+  esac
+done
+
+if [[ -z $pack_flag ]]
+then
+     usage
+     exit 1
+fi
+
+shift $(($OPTIND - 1))
+
+if [ "$pack_flag" ]
+then
+	case $pack_val in
+	package)	mvn clean install -Dmaven.test.skip="$test_flag"
+			;;
+	redeploy)	mvn tomcat:redeploy -DcatUrl="$catUrl" -Dmaven.test.skip=$test_flag
+			;;
+	deploy)		mvn tomcat:deploy -DcatUrl="$catUrl" -Dmaven.test.skip=$test_flag
+			;;
+	undeploy)	mvn tomcat:undeploy -DcatUrl="$catUrl" -Dmaven.test.skip=$test_flag
+			;;
+	*)	
+		usage
+		;;
+	esac
+fi

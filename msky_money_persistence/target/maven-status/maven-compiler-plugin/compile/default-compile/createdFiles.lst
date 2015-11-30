@@ -1,0 +1,10 @@
+org/hibernate/dialect/SQLiteDialect$SQLiteUniqueDelegate.class
+org/hibernate/dialect/SQLiteDialect$1.class
+com/dsu/dao/api/AbstractCrudDao.class
+org/hibernate/dialect/SQLiteDialect.class
+org/hibernate/dialect/SQLiteDialect$2.class
+com/dsu/dao/transmission/TransmissionDaoImpl.class
+com/dsu/dao/transmission/TransmissionDao.class
+org/hibernate/dialect/SQLiteDialect$3.class
+org/hibernate/dialect/SQLiteDialect$4.class
+com/dsu/dao/api/CrudDao.class
