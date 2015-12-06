@@ -43,14 +43,11 @@
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
 		</dependency>
-		<!-- <dependency> <groupId>org.javassist</groupId> <artifactId>javassist</artifactId> 
-			<version>3.18.1-GA</version> </dependency> -->
-		
 		<dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>${hsqldb.version}</version>
-        </dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgres.version}</version>
+		</dependency>
 
 		<!-- test scoped -->
 		<dependency>
@@ -66,9 +63,17 @@
 			<classifier>tests</classifier>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<properties>
 		<hsqldb.version>2.3.3</hsqldb.version>
+		<postgres.version>9.4-1202-jdbc42</postgres.version>
 	</properties>
 </project>
