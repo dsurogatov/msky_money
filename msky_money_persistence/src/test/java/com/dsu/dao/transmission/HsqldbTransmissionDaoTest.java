@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/persistence-test-context.xml")
+@ContextConfiguration("classpath:/hsqldb-persistence-test-context.xml")
 @Rollback
 @Transactional
 public class HsqldbTransmissionDaoTest extends TransmissionDaoTest {

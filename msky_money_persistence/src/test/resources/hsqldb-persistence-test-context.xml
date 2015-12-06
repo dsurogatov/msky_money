@@ -15,6 +15,6 @@
 	<context:component-scan base-package="com.dsu.dao" />
 
 	<!-- holding properties for database connectivity / -->
-	<context:property-placeholder location="classpath:jpa-test.properties" />
+	<context:property-placeholder location="classpath:hsqldb-jpa-test.properties" />
 
 </beans>

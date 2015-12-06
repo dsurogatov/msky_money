@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,8 +21,8 @@ import junit.framework.TestCase;
  * Tests for transmission dao
  */
 @Component
-@Ignore("This is base class with helpers method")
-public class TransmissionDaoTest extends TestCase {
+//@Ignore("This is base class with helpers method")
+public class TransmissionDaoTest {
 
 	@Autowired
 	TransmissionDao dao;
@@ -51,28 +50,28 @@ public class TransmissionDaoTest extends TestCase {
 		//System.out.println("*************" + trans0 + presentDate);
 		
 		trans0 = dao.save(trans0);
-		assertNotNull(trans0.getId());
+		TestCase.assertNotNull(trans0.getId());
 		
 		trans0.setDate(presentDate);
 		trans0.setValue(val);
 		trans0.setDescription(description);
 		Transmission trans1 = dao.save(trans0);
-		assertEquals(trans0, trans1);
-		assertEquals(trans1.getDate(), presentDate);
-		assertEquals(trans1.getValue(), val);
-		assertEquals(trans1.getDescription(), description);
+		TestCase.assertEquals(trans0, trans1);
+		TestCase.assertEquals(trans1.getDate(), presentDate);
+		TestCase.assertEquals(trans1.getValue(), val);
+		TestCase.assertEquals(trans1.getDescription(), description);
 		TransmissionTest.assertEntityPropertiesEquals(trans0, trans1);
 		
 		trans1 = dao.findById(trans0.getId());
-		assertEquals(trans0, trans1);
+		TestCase.assertEquals(trans0, trans1);
 		TransmissionTest.assertEntityPropertiesEquals(trans0, trans1);
 		
 		List<Transmission> transmList = dao.findAll();
-		assertEquals(transmList.size(), 1);
-		assertEquals(dao.count(), 1);
+		TestCase.assertEquals(transmList.size(), 1);
+		TestCase.assertEquals(dao.count(), 1);
 		
 		dao.delete(trans0);
-		assertEquals(dao.findAll().size(), 0);
-		assertEquals(dao.count(), 0);
+		TestCase.assertEquals(dao.findAll().size(), 0);
+		TestCase.assertEquals(dao.count(), 0);
 	}
 }
