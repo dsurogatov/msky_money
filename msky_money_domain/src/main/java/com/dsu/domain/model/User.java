@@ -17,7 +17,7 @@ import com.dsu.domain.api.NamedEntity;
 @Table(name="tbl_user")
 public class User extends NamedEntity {
 
-	@Column(name = "s_login", unique = true, nullable = false)
+	@Column(name = "s_login", length = 100, unique = true, nullable = false)
 	private String login;
 	@Column(name = "s_password", length = 32, updatable = false, nullable = false)
 	private String password;

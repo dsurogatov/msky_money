@@ -4,7 +4,6 @@
 package com.dsu.domain.api;
 
 import javax.persistence.Column;
-import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
 
 /**
@@ -14,8 +13,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class NamedEntity extends BaseEntity {
 
-	@Lob
-	@Column(name = "s_name", nullable = false)
+	@Column(name = "s_name", nullable = false, length = 1000)
 	private String name;
 
 	public String getName() {
