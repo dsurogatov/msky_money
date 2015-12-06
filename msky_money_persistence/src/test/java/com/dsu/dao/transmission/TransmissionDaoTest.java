@@ -1,22 +1,17 @@
 /**
  * 
  */
-package com.dsu.dao;
+package com.dsu.dao.transmission;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 
-import com.dsu.dao.transmission.TransmissionDao;
 import com.dsu.domain.model.Transmission;
 import com.dsu.domain.model.TransmissionTest;
 
@@ -26,10 +21,8 @@ import junit.framework.TestCase;
  * @author nescafe
  * Tests for transmission dao
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/persistence-test-context.xml")
-@TransactionConfiguration(defaultRollback = true)
-@Transactional
+@Component
+@Ignore("This is base class with helpers method")
 public class TransmissionDaoTest extends TestCase {
 
 	@Autowired
@@ -53,9 +46,9 @@ public class TransmissionDaoTest extends TestCase {
 	}
 
 	
-	@Test
-	public void testTransmissionDaoImpl() {
+	protected void _testTransmissionDaoImpl() {
 		Transmission trans0 = TransmissionTest.createTranssmission();
+		//System.out.println("*************" + trans0 + presentDate);
 		
 		trans0 = dao.save(trans0);
 		assertNotNull(trans0.getId());
