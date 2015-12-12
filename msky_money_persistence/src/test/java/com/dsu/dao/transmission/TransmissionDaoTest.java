@@ -70,7 +70,7 @@ public class TransmissionDaoTest {
 		TestCase.assertEquals(transmList.size(), 1);
 		TestCase.assertEquals(dao.count(), 1);
 		
-		dao.delete(trans0);
+		dao.delete(trans0.getId());
 		TestCase.assertEquals(dao.findAll().size(), 0);
 		TestCase.assertEquals(dao.count(), 0);
 	}

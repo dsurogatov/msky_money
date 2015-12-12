@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.dsu.dao.user;
 
 import org.junit.Test;
@@ -13,15 +10,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * @author nescafe
- *
- */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/postgres-persistence-test-context.xml")
+@ContextConfiguration("classpath:/hsqldb-persistence-test-context.xml")
 @Rollback
 @Transactional
-public class PostgresUserDaoTest {
+public class HsqldbUserDaoTest {
 	
 	@Autowired
 	private UserDaoTest userDaoTest;
@@ -71,5 +64,4 @@ public class PostgresUserDaoTest {
 	public void changePersistentIdTestDao() {
 		userDaoTest.changePersistentIdTestDao();
 	}
-	
 }

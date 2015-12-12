@@ -21,12 +21,14 @@ public class UserDaoImpl extends AbstractCrudDao<User> implements UserDao {
 	 * @see com.dsu.dao.user.UserDao#findByName(java.lang.String)
 	 */
 	@Override
-	public List<User> findByCols(String findedValue) {
+	public List<User> findByFields(String findingValue) {
+		if (findingValue == null) {
+			throw new IllegalArgumentException("findingValue is null");
+		}
+		
 		@SuppressWarnings("unchecked")
-//		List<String[]> results = entityManager.createQuery(" SELECT o.name, o.id || o.login || o.name || 'sss' FROM User o ")
-//				.getResultList();
 		List<User> results = entityManager.createQuery(" SELECT o FROM User o WHERE concat(o.id, o.name, o.login) LIKE :value ")
-				.setParameter("value", "%" + findedValue + "%").getResultList();
+				.setParameter("value", "%" + findingValue + "%").getResultList();
 		return results;
 	}
 

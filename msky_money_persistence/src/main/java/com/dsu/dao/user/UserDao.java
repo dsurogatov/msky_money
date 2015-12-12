@@ -14,5 +14,5 @@ import com.dsu.domain.model.User;
  */
 public interface UserDao extends CrudDao<User> {
 
-	List<User> findByCols(String findedValue);
+	List<User> findByFields(String findedValue);
 }

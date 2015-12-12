@@ -19,7 +19,7 @@ public class User extends NamedEntity {
 
 	@Column(name = "s_login", length = 100, unique = true, nullable = false)
 	private String login;
-	@Column(name = "s_password", length = 32, updatable = false, nullable = false)
+	@Column(name = "s_password", length = 32, nullable = false)
 	private String password;
 	
 	public String getLogin() {

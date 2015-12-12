@@ -14,10 +14,6 @@
 	<name>msky_money_service</name>
 	<url>http://maven.apache.org</url>
 	
-	<properties>
-		<aspectj.version>1.7.4</aspectj.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>msky_money</groupId>
@@ -43,16 +39,43 @@
         </dependency>
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>msky_money</groupId>
 			<artifactId>msky_money_domain</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>${commons-lang.version}</version>
+		</dependency>
+		
+		<!-- test scoped -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>msky_money</groupId>
+			<artifactId>msky_money_domain</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<classifier>tests</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>msky_money</groupId>
+			<artifactId>msky_money_persistence</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<classifier>tests</classifier>
+			<scope>test</scope>
+		</dependency>
+		
 	</dependencies>
+	
+	<properties>
+		<aspectj.version>1.7.4</aspectj.version>
+		<commons-lang.version>2.1</commons-lang.version>
+	</properties>
 	
 </project>

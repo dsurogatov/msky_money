@@ -15,6 +15,7 @@ public interface CrudDao<I> {
     List<I> findAll();
     I save(I transientInstance);
     int count();
-    void delete(I instance);
+    void delete(Long id);
+    void flush();
 
 }
