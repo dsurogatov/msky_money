@@ -47,7 +47,7 @@ public class PostgresUserDaoTest {
 		userDaoTest.nullLoginTestDao();
 	}
 	
-	@Test(expected=DataIntegrityViolationException.class)
+	@Test
 	public void nullPasswordTestDao() {
 		userDaoTest.nullPasswordTestDao();
 	}

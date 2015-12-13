@@ -11,8 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.dsu.domain.model.User;
 import com.dsu.domain.model.UserTest;
+import com.dsu.dto.converter.ConverterUtils;
+import com.dsu.dto.model.UserDTO;
 import com.dsu.service.user.UserService;
 
 import junit.framework.TestCase;
@@ -23,6 +24,13 @@ import junit.framework.TestCase;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/service-test-context.xml")
 public class UserServiceTest {
+	
+	public static void assertEqualsAllFields(UserDTO user, Long id, String name, String login, String password){
+		TestCase.assertEquals(user.getId(), id);
+		TestCase.assertEquals(user.getName(), name);
+		TestCase.assertEquals(user.getLogin(), login);
+		TestCase.assertEquals(user.getPassword(), password);
+	}
 
 	@Autowired
 	private UserService service;
@@ -31,10 +39,10 @@ public class UserServiceTest {
 	public void createUserTest() {
 
 		// test creating
-		User user1 = UserTest.createUser1();
+		UserDTO user1 = ConverterUtils.toDTO(UserTest.createUser1());
 		user1 = service.create(user1);
 		TestCase.assertNotNull(user1.getId());
-		UserTest.assertEqualsAllFields(user1, user1.getId(), UserTest.USER_1_NAME, UserTest.USER_1_LOGIN, UserTest.USER_1_PASS);
+		assertEqualsAllFields(user1, user1.getId(), UserTest.USER_1_NAME, UserTest.USER_1_LOGIN, UserTest.USER_1_PASS);
 
 		// test update user
 		user1.setName(UserTest.USER_2_NAME);
@@ -42,16 +50,16 @@ public class UserServiceTest {
 		user1.setPassword(UserTest.USER_2_PASS);
 		Long user1Id = user1.getId();
 		user1 = service.update(user1);
-		UserTest.assertEqualsAllFields(user1, user1Id, UserTest.USER_2_NAME, UserTest.USER_2_LOGIN, UserTest.USER_2_PASS);
+		assertEqualsAllFields(user1, user1Id, UserTest.USER_2_NAME, UserTest.USER_2_LOGIN, UserTest.USER_2_PASS);
 
 		// find user
 		user1 = service.findById(user1Id);
-		UserTest.assertEqualsAllFields(user1, user1Id, UserTest.USER_2_NAME, UserTest.USER_2_LOGIN, UserTest.USER_2_PASS);
+		assertEqualsAllFields(user1, user1Id, UserTest.USER_2_NAME, UserTest.USER_2_LOGIN, UserTest.USER_2_PASS);
 
 		// test getting all users
-		User user2 = UserTest.createUser1();
+		UserDTO user2 = ConverterUtils.toDTO(UserTest.createUser1());
 		user2 = service.create(user2);
-		List<User> userList = service.findAll();
+		List<UserDTO> userList = service.findAll();
 		TestCase.assertEquals(userList.size(), 2);
 		
 		// test find user by substring

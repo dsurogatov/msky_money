@@ -19,7 +19,7 @@ public class User extends NamedEntity {
 
 	@Column(name = "s_login", length = 100, unique = true, nullable = false)
 	private String login;
-	@Column(name = "s_password", length = 32, nullable = false)
+	@Column(name = "s_password", length = 32)
 	private String password;
 	
 	public String getLogin() {
@@ -33,5 +33,9 @@ public class User extends NamedEntity {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	@Override
+	public String toString() {
+		return "User [getName()=" + getName() + ", getId()=" + getId() + ", login=" + login + ", password=" + password + "]";
 	}
 }
