@@ -10,6 +10,8 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import com.dsu.domain.api.Idable;
 import com.dsu.dto.api.IdableDTO;
+import com.dsu.service.exception.ExceptionType;
+import com.dsu.service.exception.MskyMoneyException;
 
 /**
  * @author nescafe
@@ -20,7 +22,7 @@ public abstract class AbstractConverter<I extends Idable, D extends IdableDTO> i
 	private Class<I> entityClass;
 	private Class<D> dtoClass;
 
-	/**
+	/** Get entity.class instance
 	 * @return class<I> instance
 	 */
 	@SuppressWarnings("unchecked")
@@ -31,7 +33,7 @@ public abstract class AbstractConverter<I extends Idable, D extends IdableDTO> i
 		return entityClass;
 	}
 	
-	/**
+	/** Get dto.class instance
 	 * @return class<D> instance
 	 */
 	@SuppressWarnings("unchecked")
@@ -53,10 +55,8 @@ public abstract class AbstractConverter<I extends Idable, D extends IdableDTO> i
 			BeanUtils.copyProperties(dto, entity);
 			return dto;
 		} catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new MskyMoneyException(ExceptionType.INTERNAL_ERROR, e);
 		}
-		return null;
 	}
 
 	@Override
@@ -70,10 +70,8 @@ public abstract class AbstractConverter<I extends Idable, D extends IdableDTO> i
 			BeanUtils.copyProperties(entity, dto);
 			return entity;
 		} catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new MskyMoneyException(ExceptionType.INTERNAL_ERROR, e);
 		}
-		return null;
 	}
 
 }

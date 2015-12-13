@@ -12,6 +12,8 @@ import com.dsu.domain.api.Idable;
 import com.dsu.domain.model.User;
 import com.dsu.dto.api.IdableDTO;
 import com.dsu.dto.model.UserDTO;
+import com.dsu.service.exception.ExceptionType;
+import com.dsu.service.exception.MskyMoneyException;
 
 /**
  * @author nescafe Some usefull methods to covert objects, entities and dtos
@@ -37,7 +39,7 @@ public class ConverterUtils {
 			return null;
 		}
 		if (!entityCoverters.containsKey(entity.getClass())) {
-
+			throw new MskyMoneyException(ExceptionType.CONVERTER_NOT_FINDED);
 		}
 
 		@SuppressWarnings("unchecked")
@@ -70,7 +72,7 @@ public class ConverterUtils {
 			return null;
 		}
 		if (!dtoCoverters.containsKey(dto.getClass())) {
-
+			throw new MskyMoneyException(ExceptionType.CONVERTER_NOT_FINDED);
 		}
 
 		@SuppressWarnings("unchecked")

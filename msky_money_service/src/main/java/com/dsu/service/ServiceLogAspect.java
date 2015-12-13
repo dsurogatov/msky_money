@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
+import com.dsu.service.exception.ExceptionType;
+import com.dsu.service.exception.MskyMoneyException;
+
 @Component
 @Aspect
 public class ServiceLogAspect {
@@ -36,7 +39,13 @@ public class ServiceLogAspect {
 		String logMessage = serviceName + " execution time: " + stopWatch.getTotalTimeMillis() + " ms.";
 		if (ex != null) {
 			LOGGER.info("Exception in service: " + logMessage + " Exception is: " + ex.getMessage());
-			throw ex;
+			if (ex instanceof MskyMoneyException) {
+				throw ex;
+			} else if (ex instanceof Exception)  {
+				throw new MskyMoneyException(ExceptionType.INTERNAL_ERROR, (Exception)ex);
+			} else { // SEVERE EXCEPTION
+				throw ex;
+			}
 		} else {
 			LOGGER.info("Ending service: " + logMessage);
 		}

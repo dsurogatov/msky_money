@@ -20,8 +20,6 @@ import com.dsu.domain.model.UserTest;
 import com.dsu.dto.converter.ConverterUtils;
 import com.dsu.dto.model.UserDTO;
 
-import junit.framework.TestCase;
-
 /**
  * @author nescafe Test for UserDTO
  */
@@ -138,8 +136,5 @@ public class UserDTOTest {
 		assertEqualsAllFields(dto2, null, null, null, null);
 		entity = ConverterUtils.toEntity(dto2);
 		UserTest.assertEqualsAllFields(entity, null, null, null, null);
-		
-		TestCase.assertNull(ConverterUtils.toEntity(null));
-		TestCase.assertNull(ConverterUtils.toDTO(null));
 	}
 }
