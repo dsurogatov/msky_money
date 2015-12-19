@@ -1,4 +1,4 @@
-package com.dsu.dao;
+package org.dsu.common;
 
 import java.util.Random;
 

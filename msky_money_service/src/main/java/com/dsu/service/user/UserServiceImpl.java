@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dsu.dao.user.UserDao;
 import com.dsu.dto.model.UserDTO;
+import com.dsu.service.exception.ExceptionType;
+import com.dsu.service.exception.MskyMoneyException;
 
 /**
  * @author nescafe
@@ -33,7 +35,11 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public UserDTO findById(Long id) {
-		return toDTO(dao.findById(id));
+		UserDTO userDTO = toDTO(dao.findById(id));
+		if (userDTO == null) {
+			throw new MskyMoneyException(ExceptionType.ENTITY_NOT_FINDED);
+		}
+		return userDTO;
 	}
 
 	/* (non-Javadoc)

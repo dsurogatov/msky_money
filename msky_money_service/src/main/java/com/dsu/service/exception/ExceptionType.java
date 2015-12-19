@@ -9,5 +9,6 @@ package com.dsu.service.exception;
  */
 public enum ExceptionType {
 	INTERNAL_ERROR,
-	CONVERTER_NOT_FINDED
+	CONVERTER_NOT_FINDED,
+	ENTITY_NOT_FINDED
 }

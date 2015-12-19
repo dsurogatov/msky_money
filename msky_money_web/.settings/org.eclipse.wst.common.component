@@ -11,6 +11,9 @@
         <dependent-module archiveName="msky_money_persistence-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/msky_money_persistence/msky_money_persistence">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="msky_money_common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/msky_money_common/msky_money_common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="msky_money_domain-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/msky_money_domain/msky_money_domain">
             <dependency-type>uses</dependency-type>
         </dependent-module>

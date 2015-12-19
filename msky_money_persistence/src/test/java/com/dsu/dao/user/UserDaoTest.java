@@ -7,10 +7,11 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+
+import org.dsu.common.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.dsu.dao.RandomString;
 import com.dsu.domain.model.User;
 import com.dsu.domain.model.UserTest;
 

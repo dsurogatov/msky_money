@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.dsu.dao;
+package org.dsu.common;
 
 import org.junit.Test;
 

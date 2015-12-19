@@ -12,11 +12,12 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.dsu.common.RandomString;
 import org.junit.Test;
 
-import com.dsu.dao.RandomString;
 import com.dsu.domain.model.User;
 import com.dsu.domain.model.UserTest;
+import com.dsu.dto.builder.UserDTOBuilder;
 import com.dsu.dto.converter.ConverterUtils;
 import com.dsu.dto.model.UserDTO;
 
@@ -35,10 +36,7 @@ public class UserDTOTest {
 	 * @return instance of UserDTO
 	 */
 	public static UserDTO createUserDTO() {
-		UserDTO dto = new UserDTO();
-		dto.setName(DTO_NAME);
-		dto.setLogin(DTO_LOGIN);
-		dto.setPassword(DTO_PASSWORD);
+		UserDTO dto = new UserDTOBuilder().name(DTO_NAME).login(DTO_LOGIN).password(DTO_PASSWORD).build();
 		return dto;
 	}
 

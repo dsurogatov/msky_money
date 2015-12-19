@@ -50,13 +50,13 @@ public class ConverterUtilsTest {
 		try {
 			ConverterUtils.toEntity(new TestDTO());
 		} catch (Exception e) {
-			assertThat(e.getCause(), is(instanceOf(MskyMoneyException.class)));
+			assertThat(e, is(instanceOf(MskyMoneyException.class)));
 		}
 
 		try {
 			ConverterUtils.toDTO(new TestEntity());
 		} catch (Exception e) {
-			assertThat(e.getCause(), is(instanceOf(MskyMoneyException.class)));
+			assertThat(e, is(instanceOf(MskyMoneyException.class)));
 		}
 
 		try {
@@ -64,7 +64,7 @@ public class ConverterUtilsTest {
 			testList.add(new TestEntity());
 			ConverterUtils.toDTOList(testList);
 		} catch (Exception e) {
-			assertThat(e.getCause(), is(instanceOf(MskyMoneyException.class)));
+			assertThat(e, is(instanceOf(MskyMoneyException.class)));
 		}
 	}
 }

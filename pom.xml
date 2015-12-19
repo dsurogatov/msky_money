@@ -12,6 +12,7 @@
 		<module>msky_money_web</module>
 		<module>msky_money_persistence</module>
 		<module>msky_money_domain</module>
+		<module>msky_money_common</module>
 	</modules>
 
 	<dependencies>

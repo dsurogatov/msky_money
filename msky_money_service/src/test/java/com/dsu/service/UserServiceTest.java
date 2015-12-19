@@ -14,6 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.dsu.domain.model.UserTest;
 import com.dsu.dto.converter.ConverterUtils;
 import com.dsu.dto.model.UserDTO;
+import com.dsu.service.exception.ExceptionType;
+import com.dsu.service.exception.MskyMoneyException;
 import com.dsu.service.user.UserService;
 
 import junit.framework.TestCase;
@@ -24,8 +26,8 @@ import junit.framework.TestCase;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/service-test-context.xml")
 public class UserServiceTest {
-	
-	public static void assertEqualsAllFields(UserDTO user, Long id, String name, String login, String password){
+
+	public static void assertEqualsAllFields(UserDTO user, Long id, String name, String login, String password) {
 		TestCase.assertEquals(user.getId(), id);
 		TestCase.assertEquals(user.getName(), name);
 		TestCase.assertEquals(user.getLogin(), login);
@@ -61,7 +63,7 @@ public class UserServiceTest {
 		user2 = service.create(user2);
 		List<UserDTO> userList = service.findAll();
 		TestCase.assertEquals(userList.size(), 2);
-		
+
 		// test find user by substring
 		userList = service.findByFields(UserTest.USER_2_NAME);
 		TestCase.assertEquals(userList.size(), 1);
@@ -71,12 +73,24 @@ public class UserServiceTest {
 		TestCase.assertEquals(userList.size(), 2);
 		userList = service.findByFields(null);
 		TestCase.assertEquals(userList.size(), 2);
-		
+
 		// test delete user
 		service.delete(user1);
 		service.delete(user2);
 		userList = service.findAll();
 		TestCase.assertEquals(userList.size(), 0);
 
+	}
+
+	@Test
+	public void userNotFindedTest() {
+		try {
+			UserDTO user = service.findById(1l);
+			TestCase.fail("User founded! " + user);
+		} catch (MskyMoneyException e) {
+			if(e.getType() != ExceptionType.ENTITY_NOT_FINDED){
+				TestCase.fail("Wrong type of the exception! " + e.getType());
+			}
+		}
 	}
 }
