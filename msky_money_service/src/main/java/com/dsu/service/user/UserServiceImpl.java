@@ -69,7 +69,8 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public UserDTO create(UserDTO instance) {
-		Assert.notNull(instance);
+		Assert.notNull(instance, "[Assertion failed] - 'instance' is required; it must not be null");
+		Assert.isNull(instance.getId(), "[Assertion failed] - the 'instance.getId()' must be null");
 		
 		return toDTO(dao.save(toEntity(instance)));
 	}
@@ -79,6 +80,9 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public UserDTO update(UserDTO instance) {
+		Assert.notNull(instance, "[Assertion failed] - 'instance' is required; it must not be null");
+		Assert.notNull(instance.getId(), "[Assertion failed] - 'instance.getId()' is required; it must not be null");
+		
 		return toDTO(dao.save(toEntity(instance)));
 	}
 

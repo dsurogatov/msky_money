@@ -65,4 +65,14 @@ public class UserController {
 		UserDTO added = service.create(dto);
         return added;
     }
+	
+	/** Update user
+	 * @param dto
+	 * @return - updated dto
+	 */
+	@RequestMapping(value = "/api/user", method = RequestMethod.PUT)
+    public UserDTO update(@Valid @RequestBody UserDTO dto) {
+		UserDTO updated = service.update(dto);
+        return updated;
+    }
 }

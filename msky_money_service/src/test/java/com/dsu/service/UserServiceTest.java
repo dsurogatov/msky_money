@@ -101,10 +101,47 @@ public class UserServiceTest {
 				TestCase.fail("Wrong type of the exception! " + e.getType());
 			}
 		}
-		
+	}
+	
+	@Test
+	public void createNullTest() {
 		try {
 			UserDTO user = service.create(null);
 			TestCase.fail("User has been created! " + user);
+		} catch (MskyMoneyException e) {
+			if(e.getType() != ExceptionType.INTERNAL_ERROR && !(e.getCause() instanceof IllegalArgumentException)){
+				TestCase.fail("Wrong type of the exception! " + e.getType());
+			}
+		}
+		
+		// test: id must be null
+		try {
+			UserDTO user1 = new UserDTO();
+			user1.setId(1l);
+			UserDTO user = service.create(user1);
+			TestCase.fail("User has been created! " + user);
+		} catch (MskyMoneyException e) {
+			if(e.getType() != ExceptionType.INTERNAL_ERROR && !(e.getCause() instanceof IllegalArgumentException)){
+				TestCase.fail("Wrong type of the exception! " + e.getType());
+			}
+		}
+	}
+	
+	@Test
+	public void updateNullTest() {
+		try {
+			UserDTO user = service.update(null);
+			TestCase.fail("User has been updated! " + user);
+		} catch (MskyMoneyException e) {
+			if(e.getType() != ExceptionType.INTERNAL_ERROR && !(e.getCause() instanceof IllegalArgumentException)){
+				TestCase.fail("Wrong type of the exception! " + e.getType());
+			}
+		}
+		
+		// test: id mustn't be null
+		try {
+			UserDTO user = service.update(new UserDTO());
+			TestCase.fail("User has been updated! " + user);
 		} catch (MskyMoneyException e) {
 			if(e.getType() != ExceptionType.INTERNAL_ERROR && !(e.getCause() instanceof IllegalArgumentException)){
 				TestCase.fail("Wrong type of the exception! " + e.getType());
