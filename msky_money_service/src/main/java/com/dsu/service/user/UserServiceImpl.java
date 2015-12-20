@@ -13,6 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import com.dsu.dao.user.UserDao;
 import com.dsu.dto.model.UserDTO;
@@ -35,6 +36,8 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public UserDTO findById(Long id) {
+		Assert.notNull(id);
+		
 		UserDTO userDTO = toDTO(dao.findById(id));
 		if (userDTO == null) {
 			throw new MskyMoneyException(ExceptionType.ENTITY_NOT_FINDED);
@@ -66,6 +69,8 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public UserDTO create(UserDTO instance) {
+		Assert.notNull(instance);
+		
 		return toDTO(dao.save(toEntity(instance)));
 	}
 

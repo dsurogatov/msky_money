@@ -92,5 +92,23 @@ public class UserServiceTest {
 				TestCase.fail("Wrong type of the exception! " + e.getType());
 			}
 		}
+		
+		try {
+			UserDTO user = service.findById(null);
+			TestCase.fail("User founded! " + user);
+		} catch (MskyMoneyException e) {
+			if(e.getType() != ExceptionType.INTERNAL_ERROR && !(e.getCause() instanceof IllegalArgumentException)){
+				TestCase.fail("Wrong type of the exception! " + e.getType());
+			}
+		}
+		
+		try {
+			UserDTO user = service.create(null);
+			TestCase.fail("User has been created! " + user);
+		} catch (MskyMoneyException e) {
+			if(e.getType() != ExceptionType.INTERNAL_ERROR && !(e.getCause() instanceof IllegalArgumentException)){
+				TestCase.fail("Wrong type of the exception! " + e.getType());
+			}
+		}
 	}
 }
