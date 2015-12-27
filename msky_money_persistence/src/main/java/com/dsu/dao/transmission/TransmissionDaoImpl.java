@@ -30,7 +30,6 @@ public class TransmissionDaoImpl extends AbstractCrudDao<Transmission> implement
 	 */
 	@Override
 	public List<Transmission> getTransmissions() {
-		// TODO Auto-generated method stub
 		Transmission trans1 = new Transmission();
 		//trans1.setId(1l);
 		trans1.setDate(new Date());

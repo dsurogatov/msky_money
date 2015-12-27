@@ -56,18 +56,15 @@ public final class UserControllerHelperTest {
 	
 	/** Check json response what it contains errors messages about long length fields 
 	 * @param ra - obj, which contains response
+	 * @param errArr - array of error messages, which contains in json answer
 	 * @throws Exception
 	 */
-	static void testLongLengthFieldErrorsResponse(ResultActions ra) throws Exception {
+	static void testLongLengthFieldErrorsResponse(ResultActions ra, String[] errArr) throws Exception {
 		ra.andExpect(status().isBadRequest())
                 .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.fieldErrors", hasSize(3)))
                 .andExpect(jsonPath("$.fieldErrors[*].field", containsInAnyOrder("name", "login", "password")))
-                .andExpect(jsonPath("$.fieldErrors[*].message", containsInAnyOrder(
-                        "The maximum size of the field 'login' is 100 chars.",
-                        "The maximum size of the field 'password' is 32 chars.",
-                        "The maximum size of the field 'name' is 1,000 chars."
-                )));
+                .andExpect(jsonPath("$.fieldErrors[*].message", containsInAnyOrder(errArr)));
 	}
 	
 	/**Check json response what it contains errors messages about null values in name and login fields 
@@ -97,5 +94,29 @@ public final class UserControllerHelperTest {
                 .andExpect(jsonPath("$.name", is(UserControllerGetMethodTest.DTO_NAME)))
                 .andExpect(jsonPath("$.login", is(UserControllerGetMethodTest.DTO_LOGIN)))
                 .andExpect(jsonPath("$.password", is(UserControllerGetMethodTest.DTO_PASSWORD)));
+	}
+	
+	/** Get array of error messages about long length fields in User class in en locale
+	 * @return arrays of messages
+	 */
+	static String[] getLongLengthUserFieldErrorMessagesEn() {
+		String[] errArr = {
+				"The maximum size of the field 'login' is 100 chars.",
+                "The maximum size of the field 'password' is 32 chars.",
+                "The maximum size of the field 'name' is 1,000 chars."
+                };
+		return errArr;
+	}
+	
+	/** Get array of error messages about long length fields in User class in ru locale
+	 * @return arrays of messages
+	 */
+	static String[] getLongLengthUserFieldErrorMessagesRu() {
+		String[] errArr = {
+				"The максимум size of the field 'login' is 100 chars.",
+                "The максимум size of the field 'password' is 32 chars.",
+                "The максимум size of the field 'name' is 1 000 chars."
+                };
+		return errArr;
 	}
 }

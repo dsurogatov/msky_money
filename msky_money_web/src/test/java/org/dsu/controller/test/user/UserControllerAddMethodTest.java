@@ -73,7 +73,7 @@ public class UserControllerAddMethodTest {
     	UserDTO dto = buildUserDTOWithLongLengthFields();
  
         ResultActions ra = mockMvc.perform(postUserDTO(dto));
-        testLongLengthFieldErrorsResponse(ra);
+        testLongLengthFieldErrorsResponse(ra, getLongLengthUserFieldErrorMessages());
  
         verifyZeroInteractions(userServiceMock);
     }
@@ -134,5 +134,12 @@ public class UserControllerAddMethodTest {
                 //.locale(new java.util.Locale("ru"))
                 .content(TestUtil.convertObjectToJsonBytes(dto));
 	}
+    
+    /** Get array of error messages about long length fields in User class
+	 * @return arrays of messages
+	 */
+    protected String[] getLongLengthUserFieldErrorMessages() {
+    	return getLongLengthUserFieldErrorMessagesEn();
+    }
 
 }

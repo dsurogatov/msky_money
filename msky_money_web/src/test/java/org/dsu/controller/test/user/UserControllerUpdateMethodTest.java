@@ -57,7 +57,7 @@ public class UserControllerUpdateMethodTest {
  
     @Autowired
     private WebApplicationContext webApplicationContext;
- 
+    
     @Before
     public void setUp() {
         //We have to reset our mock between tests because the mock objects
@@ -73,7 +73,7 @@ public class UserControllerUpdateMethodTest {
     	UserDTO dto = buildUserDTOWithLongLengthFields();
     	 
         ResultActions ra = mockMvc.perform(putUserDTO(dto));
-        testLongLengthFieldErrorsResponse(ra);
+        testLongLengthFieldErrorsResponse(ra, getLongLengthUserFieldErrorMessages());
  
         verifyZeroInteractions(userServiceMock);
     }
@@ -122,9 +122,16 @@ public class UserControllerUpdateMethodTest {
         assertThat(dtoArgument.getPassword(), is(UserControllerGetMethodTest.DTO_PASSWORD));
     }
 
-	MockHttpServletRequestBuilder putUserDTO(UserDTO dto) throws IOException {
+    protected MockHttpServletRequestBuilder putUserDTO(UserDTO dto) throws IOException {
 		return put("/api/user")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(dto));
 	}
+    
+    /** Get array of error messages about long length fields in User class
+	 * @return arrays of messages
+	 */
+    protected String[] getLongLengthUserFieldErrorMessages() {
+    	return getLongLengthUserFieldErrorMessagesEn();
+    }
 }
