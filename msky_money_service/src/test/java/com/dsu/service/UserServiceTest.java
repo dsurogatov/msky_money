@@ -38,7 +38,7 @@ public class UserServiceTest {
 	private UserService service;
 
 	@Test
-	public void createUserTest() {
+	public void allMethodsUserServiceTest() {
 
 		// test creating
 		UserDTO user1 = ConverterUtils.toDTO(UserTest.createUser1());
@@ -75,8 +75,8 @@ public class UserServiceTest {
 		TestCase.assertEquals(userList.size(), 2);
 
 		// test delete user
-		service.delete(user1);
-		service.delete(user2);
+		service.delete(user1.getId());
+		service.delete(user2.getId());
 		userList = service.findAll();
 		TestCase.assertEquals(userList.size(), 0);
 
@@ -147,5 +147,25 @@ public class UserServiceTest {
 				TestCase.fail("Wrong type of the exception! " + e.getType());
 			}
 		}
+	}
+	
+	/**
+	 * Test to delete a null entity, an entity with null id, and delete not existing entity 
+	 */
+	@Test
+	public void deleteNullTest() {
+		
+		// test: id mustn't be null
+		try {
+			service.delete(null);
+			TestCase.fail("Null user has been deleted! ");
+		} catch (MskyMoneyException e) {
+			if(e.getType() != ExceptionType.INTERNAL_ERROR && !(e.getCause() instanceof IllegalArgumentException)){
+				TestCase.fail("Wrong type of the exception! " + e.getType());
+			}
+		}
+		
+		// delete not exicting user
+		service.delete(100l);
 	}
 }

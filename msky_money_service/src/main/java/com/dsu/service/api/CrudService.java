@@ -16,6 +16,6 @@ public interface CrudService<I> {
     List<I> findAll();
     I create(I instance);
     I update(I instance);
-    void delete(I instance);
+    void delete(Long id);
     
 }

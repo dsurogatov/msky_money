@@ -3,8 +3,9 @@
  */
 package com.dsu.dto.api;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.dsu.domain.api.NamedEntity;
 
@@ -14,8 +15,8 @@ import com.dsu.domain.api.NamedEntity;
  */
 public class NamedDTO extends BaseDTO implements NamableDTO {
 
-	@NotNull(message="Field name can't be empty")
-	@Size(min=1, max=1000, message="Field name should be between 1 - 1000 characters.")
+	@NotEmpty(message="validation.notempty.field")
+	@Size(max=1000, message="validation.maxsize.field")
 	private String name;
 	
 	/* (non-Javadoc)

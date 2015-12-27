@@ -44,7 +44,11 @@ public class RestErrorHandler {
     		return new ResponseEntity<String>("Entity not found", HttpStatus.NOT_FOUND);
     	}
     	
-    	LOGGER.debug("Type of exception is {}", ex.getType());
+    	if(ex.getCause() != null) {
+    		LOGGER.error("The internal exception:", ex);
+    	} else {
+    		LOGGER.error("Type of exception is {}.", ex.getType());    		
+    	}
     	return new ResponseEntity<String>("Internal error", HttpStatus.INTERNAL_SERVER_ERROR);
     }
     
@@ -71,15 +75,16 @@ public class RestErrorHandler {
  
     private String resolveLocalizedErrorMessage(FieldError fieldError) {
         Locale currentLocale =  LocaleContextHolder.getLocale();
-        String localizedErrorMessage = messageSource.getMessage(fieldError, currentLocale);
- 
-        //If the message was not found, return the most accurate field error code instead.
-        //You can remove this check if you prefer to get the default error message.
-        //if (localizedErrorMessage.equals(fieldError.getDefaultMessage())) {
-        //    String[] fieldErrorCodes = fieldError.getCodes();
-        //    localizedErrorMessage = fieldErrorCodes[0];
-        //}
- 
+        String localizedErrorMessage = messageSource.getMessage(fieldError, currentLocale); 
+//        If the message was not found, return the most accurate field error code instead.
+//        You can remove this check if you prefer to get the default error message.
+        if (localizedErrorMessage.equals(fieldError.getDefaultMessage())) {
+//            String[] fieldErrorCodes = fieldError.getCodes();
+//            localizedErrorMessage = fieldErrorCodes[0];
+            localizedErrorMessage = messageSource.getMessage(fieldError.getDefaultMessage(), fieldError.getArguments(), currentLocale);
+        }
+        LOGGER.debug(localizedErrorMessage);
+        
         return localizedErrorMessage;
     }
 }

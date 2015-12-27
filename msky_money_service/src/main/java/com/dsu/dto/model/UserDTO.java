@@ -3,8 +3,9 @@
  */
 package com.dsu.dto.model;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.dsu.dto.api.NamedDTO;
 
@@ -13,11 +14,11 @@ import com.dsu.dto.api.NamedDTO;
  */
 public class UserDTO extends NamedDTO {
 
-	@NotNull(message="Field login can't be empty")
-	@Size(min=1, max=100, message="Field login should be between 1 - 100 characters.")
+	@NotEmpty(message="validation.notempty.field")
+	@Size(max=100, message="validation.maxsize.field")
 	private String login;
 
-	@Size(max=32, message="Field password should be less or equal 32 characters.")
+	@Size(max=32, message="validation.maxsize.field")
 	private String password;
 
 	/**

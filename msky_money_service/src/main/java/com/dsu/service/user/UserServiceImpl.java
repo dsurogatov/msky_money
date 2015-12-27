@@ -90,8 +90,10 @@ public class UserServiceImpl implements UserService {
 	 * @see com.dsu.service.api.CrudService#delete(java.lang.Object)
 	 */
 	@Override
-	public void delete(UserDTO instance) {
-		dao.delete(instance.getId());
+	public void delete(Long id) {
+		Assert.notNull(id, "[Assertion failed] - 'id' is required; it must not be null");
+		
+		dao.delete(id);
 	}
 
 }

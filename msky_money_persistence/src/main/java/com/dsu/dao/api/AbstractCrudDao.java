@@ -108,6 +108,8 @@ public abstract class AbstractCrudDao<I> implements CrudDao<I> {
 
 	public void delete(Long id) {
 		I instance = findById(id);
-		entityManager.remove(instance);
+		if (instance != null) {
+			entityManager.remove(instance);
+		}
 	}
 }
