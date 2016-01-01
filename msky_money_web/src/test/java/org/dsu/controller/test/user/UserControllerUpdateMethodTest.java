@@ -83,7 +83,7 @@ public class UserControllerUpdateMethodTest {
     	UserDTO dto = buildUserDTOWithNullNameLoginFields(true);
  
         ResultActions ra = mockMvc.perform(putUserDTO(dto));
-        testNullNameLoginFieldsErrorsResponse(ra);
+        testNullNameLoginFieldsErrorsResponse(ra, getEmptyUserFieldErrorMessages());
  
         verifyZeroInteractions(userServiceMock);
     }
@@ -93,7 +93,7 @@ public class UserControllerUpdateMethodTest {
     	UserDTO dto = buildUserDTOWithNullNameLoginFields(false);
  
         ResultActions ra = mockMvc.perform(putUserDTO(dto));
-        testNullNameLoginFieldsErrorsResponse(ra);
+        testNullNameLoginFieldsErrorsResponse(ra, getEmptyUserFieldErrorMessages());
  
         verifyZeroInteractions(userServiceMock);
     }
@@ -133,5 +133,12 @@ public class UserControllerUpdateMethodTest {
 	 */
     protected String[] getLongLengthUserFieldErrorMessages() {
     	return getLongLengthUserFieldErrorMessagesEn();
+    }
+    
+    /** Get array of error messages about empty fields in User class
+     * @return - arrays of messages
+     */
+    protected String[] getEmptyUserFieldErrorMessages() {
+    	return getEmptyUserFieldErrorMessagesEn();
     }
 }

@@ -83,7 +83,7 @@ public class UserControllerAddMethodTest {
     	UserDTO dto = buildUserDTOWithNullNameLoginFields(true);
  
         ResultActions ra = mockMvc.perform(postUserDTO(dto));
-        testNullNameLoginFieldsErrorsResponse(ra);
+        testNullNameLoginFieldsErrorsResponse(ra, getEmptyUserFieldErrorMessages());
  
         verifyZeroInteractions(userServiceMock);
     }
@@ -93,7 +93,7 @@ public class UserControllerAddMethodTest {
     	UserDTO dto = buildUserDTOWithNullNameLoginFields(false);
  
         ResultActions ra = mockMvc.perform(postUserDTO(dto));
-        testNullNameLoginFieldsErrorsResponse(ra);
+        testNullNameLoginFieldsErrorsResponse(ra, getEmptyUserFieldErrorMessages());
  
         verifyZeroInteractions(userServiceMock);
     }
@@ -128,7 +128,7 @@ public class UserControllerAddMethodTest {
         assertThat(dtoArgument.getPassword(), is(UserControllerGetMethodTest.DTO_PASSWORD));
     }
     
-    private MockHttpServletRequestBuilder postUserDTO(UserDTO dto) throws IOException {
+    protected MockHttpServletRequestBuilder postUserDTO(UserDTO dto) throws IOException {
 		return post("/api/user")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 //.locale(new java.util.Locale("ru"))
@@ -140,6 +140,13 @@ public class UserControllerAddMethodTest {
 	 */
     protected String[] getLongLengthUserFieldErrorMessages() {
     	return getLongLengthUserFieldErrorMessagesEn();
+    }
+    
+    /** Get array of error messages about empty fields in User class
+     * @return - arrays of messages
+     */
+    protected String[] getEmptyUserFieldErrorMessages() {
+    	return getEmptyUserFieldErrorMessagesEn();
     }
 
 }

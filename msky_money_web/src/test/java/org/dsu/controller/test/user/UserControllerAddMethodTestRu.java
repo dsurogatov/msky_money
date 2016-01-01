@@ -3,8 +3,9 @@
  */
 package org.dsu.controller.test.user;
 
-import static org.dsu.controller.test.user.UserControllerHelperTest.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.dsu.controller.test.user.UserControllerHelperTest.getEmptyUserFieldErrorMessagesRu;
+import static org.dsu.controller.test.user.UserControllerHelperTest.getLongLengthUserFieldErrorMessagesRu;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -22,15 +23,15 @@ import com.dsu.dto.model.UserDTO;
 
 /**
  * @author nescafe
- *
+ * Test add user in ru locale
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TestContext.class, WebAppContext.class})
 @WebAppConfiguration
-public class UserControllerUpdateMethodTestRu extends UserControllerUpdateMethodTest {
-
-	protected MockHttpServletRequestBuilder putUserDTO(UserDTO dto) throws IOException {
-		return put("/api/user")
+public class UserControllerAddMethodTestRu extends UserControllerAddMethodTest {
+	
+	protected MockHttpServletRequestBuilder postUserDTO(UserDTO dto) throws IOException {
+		return post("/api/user")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .locale(new Locale("ru"))
                 .content(TestUtil.convertObjectToJsonBytes(dto));
@@ -49,4 +50,5 @@ public class UserControllerUpdateMethodTestRu extends UserControllerUpdateMethod
 	protected String[] getEmptyUserFieldErrorMessages() {
     	return getEmptyUserFieldErrorMessagesRu();
     }
+
 }

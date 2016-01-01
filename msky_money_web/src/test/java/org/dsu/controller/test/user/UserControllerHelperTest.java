@@ -71,16 +71,13 @@ public final class UserControllerHelperTest {
 	 * @param ra - obj, which contains response
 	 * @throws Exception
 	 */
-	static void testNullNameLoginFieldsErrorsResponse(ResultActions ra) throws Exception {
+	static void testNullNameLoginFieldsErrorsResponse(ResultActions ra, String[] errArr) throws Exception {
 		//System.out.println(ra.andReturn().getResponse().getContentAsString());
 		ra.andExpect(status().isBadRequest())
 		        .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
 		        .andExpect(jsonPath("$.fieldErrors", hasSize(2)))
 		        .andExpect(jsonPath("$.fieldErrors[*].field", containsInAnyOrder("name", "login")))
-		        .andExpect(jsonPath("$.fieldErrors[*].message", containsInAnyOrder(
-		                "The field 'login' can't be empty.",
-		                "The field 'name' can't be empty."
-		        )));
+		        .andExpect(jsonPath("$.fieldErrors[*].message", containsInAnyOrder(errArr)));
 	}
 	
 	/** Test UserDTO obj with predefined values
@@ -113,9 +110,31 @@ public final class UserControllerHelperTest {
 	 */
 	static String[] getLongLengthUserFieldErrorMessagesRu() {
 		String[] errArr = {
-				"The максимум size of the field 'login' is 100 chars.",
-                "The максимум size of the field 'password' is 32 chars.",
-                "The максимум size of the field 'name' is 1 000 chars."
+				"Максимальный размер поля 'Логин' - 100.",
+                "Максимальный размер поля 'Пароль' - 32.",
+                "Максимальный размер поля 'Имя' - 1 000."
+                };
+		return errArr;
+	}
+	
+	/** Get array of error messages about empty fields in User class in en locale
+	 * @return - array of messages
+	 */
+	static String[] getEmptyUserFieldErrorMessagesEn() {
+		String[] errArr = {
+				"The field 'login' can't be empty.",
+                "The field 'name' can't be empty."
+                };
+		return errArr;
+	}
+	
+	/** Get array of error messages about empty fields in User class in eru locale
+	 * @return - array of messages
+	 */
+	static String[] getEmptyUserFieldErrorMessagesRu() {
+		String[] errArr = {
+				"Поле 'Логин' не может быть пустым.",
+                "Поле 'Имя' не может быть пустым."
                 };
 		return errArr;
 	}
