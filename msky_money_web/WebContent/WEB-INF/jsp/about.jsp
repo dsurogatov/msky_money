@@ -1,9 +1,4 @@
-<html>
-<head>
-<title>About Msky Money</title>
-</head>
-<body>
-Project Msky Money<br>
+<div style="margin-left: 20px;">
+Project MskyMoney<br>
 Version is ${version}
-</body>
-</html>
+</div>
