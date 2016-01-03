@@ -3,8 +3,6 @@
  */
 package com.dsu.dto.api;
 
-import com.dsu.domain.api.BaseEntity;
-
 /**
  * @author nescafe
  *
@@ -28,10 +26,10 @@ public class BaseDTO implements IdableDTO {
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
-		if (!(o instanceof BaseEntity))
+		if (!(o instanceof BaseDTO))
 			return false;
 
-		BaseEntity that = (BaseEntity) o;
+		BaseDTO that = (BaseDTO) o;
 
 		if (getId() != null ? !getId().equals(that.getId())
 				: that.getId() != null)

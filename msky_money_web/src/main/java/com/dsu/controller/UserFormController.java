@@ -14,8 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UserFormController {
 
-	@RequestMapping(value = "/UserForm", method = RequestMethod.GET)
-    public String getTransmissionForm() {
-        return "user/UserForm";
+	@RequestMapping(value = "/UserListForm", method = RequestMethod.GET)
+    public String getUserListForm() {
+        return "user/UserListForm";
+    }
+	
+	@RequestMapping(value = "/UserEditForm", method = RequestMethod.GET)
+    public String getUserEditForm() {
+        return "user/UserEditForm";
     }
 }

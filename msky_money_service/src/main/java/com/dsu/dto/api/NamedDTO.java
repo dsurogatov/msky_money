@@ -7,8 +7,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.dsu.domain.api.NamedEntity;
-
 /**
  * @author nescafe
  *
@@ -34,12 +32,12 @@ public class NamedDTO extends BaseDTO implements NamableDTO {
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
-		if (!(o instanceof NamedEntity))
+		if (!(o instanceof NamedDTO))
 			return false;
 		if (!super.equals(o))
 			return false;
 
-		NamedEntity that = (NamedEntity) o;
+		NamedDTO that = (NamedDTO) o;
 
 		if (getName() != null ? !getName().equals(that.getName()) : that
 				.getName() != null)

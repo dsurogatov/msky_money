@@ -17,6 +17,28 @@ App.factory('UserService', [
 								return $q.reject(errResponse);
 							});
 				},
+				
+				fetchUsersByFields : function(value) {
+					return $http.get(
+							'http://localhost:8080/msky_money_web/api/user/find/' + value)
+							.then(function(response) {
+								return response.data;
+							}, function(errResponse) {
+								console.error('Error while fetching users');
+								return $q.reject(errResponse);
+							});
+				},
+				
+				fetchUser : function(id) {
+					return $http.get(
+							'http://localhost:8080/msky_money_web/api/user/' + id)
+							.then(function(response) {
+								return response.data;
+							}, function(errResponse) {
+								console.error('Error while fetching users');
+								return $q.reject(errResponse);
+							});
+				},
 
 				createUser : function(user) {
 					return $http.post(

@@ -41,14 +41,22 @@ body, .form-control {
 	width: 80px !important;
 }
 
+.custom-width-60 {
+	width: 60px !important;
+}
+
 .field.ng-valid {
 	background-color: lightgreen;
 }
 
 .field.ng-dirty.ng-invalid-required {
-	background-color: red;
+	background-color: #ffd6cc;
 }
 
 .field.ng-dirty.ng-invalid-minlength {
+	background-color: yellow;
+}
+
+.field.ng-dirty.ng-invalid-maxlength {
 	background-color: yellow;
 }

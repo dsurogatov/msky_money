@@ -76,6 +76,9 @@ public class UserController {
         return updated;
     }
 	
+	/** Delete user 
+	 * @param id
+	 */
 	@RequestMapping(value = {"/api/user/{id}"}, method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable("id") Long id) {
 		LOGGER.debug("Id is '{}'", id);
