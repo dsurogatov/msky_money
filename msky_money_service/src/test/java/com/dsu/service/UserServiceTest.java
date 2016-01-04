@@ -5,9 +5,12 @@ package com.dsu.service;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -26,12 +29,17 @@ import junit.framework.TestCase;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/service-test-context.xml")
 public class UserServiceTest {
+	
+	private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-	public static void assertEqualsAllFields(UserDTO user, Long id, String name, String login, String password) {
+	public static void assertEqualsFields(UserDTO user, Long id, String name, String login) {
 		TestCase.assertEquals(user.getId(), id);
 		TestCase.assertEquals(user.getName(), name);
 		TestCase.assertEquals(user.getLogin(), login);
-		TestCase.assertEquals(user.getPassword(), password);
+	}
+	
+	public static void assertEqualsPassword(String pass1, String pass2) {
+		TestCase.assertTrue(passwordEncoder.matches(pass2, pass1));
 	}
 
 	@Autowired
@@ -44,7 +52,9 @@ public class UserServiceTest {
 		UserDTO user1 = ConverterUtils.toDTO(UserTest.createUser1());
 		user1 = service.create(user1);
 		TestCase.assertNotNull(user1.getId());
-		assertEqualsAllFields(user1, user1.getId(), UserTest.USER_1_NAME, UserTest.USER_1_LOGIN, UserTest.USER_1_PASS);
+		assertEqualsFields(user1, user1.getId(), UserTest.USER_1_NAME, UserTest.USER_1_LOGIN);
+		assertEqualsPassword(user1.getHashedPassword(), UserTest.USER_1_PASS);
+		TestCase.assertTrue(StringUtils.isEmpty(user1.getPassword()));
 
 		// test update user
 		user1.setName(UserTest.USER_2_NAME);
@@ -52,11 +62,15 @@ public class UserServiceTest {
 		user1.setPassword(UserTest.USER_2_PASS);
 		Long user1Id = user1.getId();
 		user1 = service.update(user1);
-		assertEqualsAllFields(user1, user1Id, UserTest.USER_2_NAME, UserTest.USER_2_LOGIN, UserTest.USER_2_PASS);
+		assertEqualsFields(user1, user1Id, UserTest.USER_2_NAME, UserTest.USER_2_LOGIN);
+		assertEqualsPassword(user1.getHashedPassword(), UserTest.USER_2_PASS);
+		TestCase.assertTrue(StringUtils.isEmpty(user1.getPassword()));
 
 		// find user
 		user1 = service.findById(user1Id);
-		assertEqualsAllFields(user1, user1Id, UserTest.USER_2_NAME, UserTest.USER_2_LOGIN, UserTest.USER_2_PASS);
+		assertEqualsFields(user1, user1Id, UserTest.USER_2_NAME, UserTest.USER_2_LOGIN);
+		assertEqualsPassword(user1.getHashedPassword(), UserTest.USER_2_PASS);
+		TestCase.assertTrue(StringUtils.isEmpty(user1.getPassword()));
 
 		// test getting all users
 		UserDTO user2 = ConverterUtils.toDTO(UserTest.createUser1());

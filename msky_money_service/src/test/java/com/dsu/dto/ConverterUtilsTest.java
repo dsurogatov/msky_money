@@ -12,7 +12,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.dsu.domain.api.BaseEntity;
+import com.dsu.domain.api.AbstractIdEntity;
 import com.dsu.dto.api.BaseDTO;
 import com.dsu.dto.converter.ConverterUtils;
 import com.dsu.service.exception.MskyMoneyException;
@@ -28,7 +28,7 @@ public class ConverterUtilsTest {
 
 	}
 
-	private static class TestEntity extends BaseEntity {
+	private static class TestEntity extends AbstractIdEntity {
 
 	}
 

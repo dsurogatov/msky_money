@@ -7,7 +7,7 @@ package com.dsu.dto.api;
  * @author nescafe
  * Base Interface for DTO
  */
-public interface IdableDTO {
+public interface IdDTO {
 
 	/**
 	 * @return id 

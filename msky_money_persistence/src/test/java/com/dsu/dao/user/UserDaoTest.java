@@ -3,12 +3,13 @@
  */
 package com.dsu.dao.user;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.util.List;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-
-import org.dsu.common.RandomString;
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -117,21 +118,21 @@ public class UserDaoTest {
 
 	void longLengthNameTestDao() {
 		User user1 = UserTest.createUser1();
-		user1.setName(RandomString.generateRandomStringByLength(1001));
+		user1.setName(RandomStringUtils.random(1001));
 		user1 = dao.save(user1);
 		dao.flush();
 	}
 
 	void longLengthLoginTestDao() {
 		User user1 = UserTest.createUser1();
-		user1.setLogin(RandomString.generateRandomStringByLength(101));
+		user1.setLogin(RandomStringUtils.random(101));
 		user1 = dao.save(user1);
 		dao.flush();
 	}
 
 	void longLengthPasswordTestDao() {
 		User user1 = UserTest.createUser1();
-		user1.setPassword(RandomString.generateRandomStringByLength(33));
+		user1.setPassword(RandomStringUtils.random(61));
 		user1 = dao.save(user1);
 		dao.flush();
 	}
@@ -140,6 +141,15 @@ public class UserDaoTest {
 		User user1 = UserTest.createUser1();
 		user1 = dao.save(user1);
 		user1.setId(user1.getId() + 1);
+		user1 = dao.save(user1);
+		dao.flush();
+	}
+	
+	void maxLengthFieldsTestDao() {
+		User user1 = UserTest.createUser1();
+		user1.setName(RandomStringUtils.random(1000));
+		user1.setLogin(RandomStringUtils.random(100));
+		user1.setPassword(RandomStringUtils.random(60));
 		user1 = dao.save(user1);
 		dao.flush();
 	}

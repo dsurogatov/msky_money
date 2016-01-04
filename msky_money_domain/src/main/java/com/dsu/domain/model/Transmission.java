@@ -9,14 +9,14 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 
-import com.dsu.domain.api.BaseEntity;
+import com.dsu.domain.api.AbstractIdEntity;
 
 /**
  * @author nescafe
  *
  */
 @Entity
-public class Transmission extends BaseEntity {
+public class Transmission extends AbstractIdEntity {
 
 	@Basic
 	private Date date;

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.dsu.dto.model.ValidationErrorDTO;
+import com.dsu.json.ValidationErrorJson;
 import com.dsu.service.exception.ExceptionType;
 import com.dsu.service.exception.MskyMoneyException;
 
@@ -55,15 +55,15 @@ public class RestErrorHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public ValidationErrorDTO processValidationError(MethodArgumentNotValidException ex) {
+    public ValidationErrorJson processValidationError(MethodArgumentNotValidException ex) {
         BindingResult result = ex.getBindingResult();
         List<FieldError> fieldErrors = result.getFieldErrors();
  
         return processFieldErrors(fieldErrors);
     }
  
-    private ValidationErrorDTO processFieldErrors(List<FieldError> fieldErrors) {
-        ValidationErrorDTO dto = new ValidationErrorDTO();
+    private ValidationErrorJson processFieldErrors(List<FieldError> fieldErrors) {
+        ValidationErrorJson dto = new ValidationErrorJson();
  
         for (FieldError fieldError: fieldErrors) {
             String localizedErrorMessage = resolveLocalizedErrorMessage(fieldError);

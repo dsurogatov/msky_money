@@ -1,18 +1,18 @@
 /**
  * 
  */
-package com.dsu.dto.model;
+package com.dsu.json;
 
 /**
  * @author nescafe
- * DTO for save validation error message
+ * Object for save validation error message
  */
-public class FieldErrorDTO {
+public class FieldErrorJson {
 
 	private final String field;
     private final String message;
  
-    public FieldErrorDTO(String field, String message) {
+    public FieldErrorJson(String field, String message) {
         this.field = field;
         this.message = message;
     }

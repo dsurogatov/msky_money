@@ -8,8 +8,8 @@ import java.lang.reflect.ParameterizedType;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.dsu.domain.api.Idable;
-import com.dsu.dto.api.IdableDTO;
+import com.dsu.domain.api.IdEntity;
+import com.dsu.dto.api.IdDTO;
 import com.dsu.service.exception.ExceptionType;
 import com.dsu.service.exception.MskyMoneyException;
 
@@ -17,7 +17,7 @@ import com.dsu.service.exception.MskyMoneyException;
  * @author nescafe
  *
  */
-public abstract class AbstractConverter<I extends Idable, D extends IdableDTO> implements Converter<I, D> {
+public abstract class AbstractConverter<I extends IdEntity, D extends IdDTO> implements Converter<I, D> {
 	
 	private Class<I> entityClass;
 	private Class<D> dtoClass;

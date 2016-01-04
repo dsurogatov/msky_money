@@ -31,7 +31,7 @@ public final class UserControllerHelperTest {
 	static UserDTO buildUserDTOWithLongLengthFields() {
 		String name = RandomStringUtils.random(1001);
     	String login = RandomStringUtils.random(101);
-        String password = RandomStringUtils.random(33);
+        String password = RandomStringUtils.random(101);
  
         UserDTO dto = new UserDTOBuilder().id(1l)
         		.name(name)
@@ -99,7 +99,7 @@ public final class UserControllerHelperTest {
 	static String[] getLongLengthUserFieldErrorMessagesEn() {
 		String[] errArr = {
 				"The maximum size of the field 'login' is 100 chars.",
-                "The maximum size of the field 'password' is 32 chars.",
+                "The maximum size of the field 'password' is 100 chars.",
                 "The maximum size of the field 'name' is 1,000 chars."
                 };
 		return errArr;
@@ -111,7 +111,7 @@ public final class UserControllerHelperTest {
 	static String[] getLongLengthUserFieldErrorMessagesRu() {
 		String[] errArr = {
 				"Максимальный размер поля 'Логин' - 100.",
-                "Максимальный размер поля 'Пароль' - 32.",
+                "Максимальный размер поля 'Пароль' - 100.",
                 "Максимальный размер поля 'Имя' - 1 000."
                 };
 		return errArr;

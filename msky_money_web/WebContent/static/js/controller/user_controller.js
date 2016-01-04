@@ -80,9 +80,10 @@ App.controller('UserEditController', [
 				id : null,
 				name : '',
 				login : '',
-				password : ''
+				password : '',
+				hashedPassword : ''
 			};
-			self.user = self.user_prototype;
+			self.user = angular.copy(self.user_prototype);
 			
 			self.setUser = function(user) {
 				self.user_prototype = user;
@@ -124,7 +125,7 @@ App.controller('UserEditController', [
 			self.updateUser = function(user) {
 				UserService.updateUser(user).then(self.saveOk,
 						function(errResponse) {
-							console.error('Error while updating User.');
+							console.error('Error while updating User.', errResponse);
 						});
 			};
 			

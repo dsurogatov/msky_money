@@ -3,14 +3,14 @@
  */
 package com.dsu.dto.converter;
 
-import com.dsu.domain.api.Idable;
-import com.dsu.dto.api.IdableDTO;
+import com.dsu.domain.api.IdEntity;
+import com.dsu.dto.api.IdDTO;
 
 /**
  * @author nescafe
  * Defines base methods to covert between entity and dto 
  */
-public interface Converter<I extends Idable, D extends IdableDTO> {
+public interface Converter<I extends IdEntity, D extends IdDTO> {
 
 	/** Convert entity to DTO object
 	 * @param entity

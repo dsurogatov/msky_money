@@ -12,7 +12,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-import org.dsu.common.RandomString;
+import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;
 
 import com.dsu.domain.model.User;
@@ -94,9 +94,9 @@ public class UserDTOTest {
 		assertEquals(2, constraintViolations.size());
 		
 		// set long length fileds values 
-		dto.setName(RandomString.generateRandomStringByLength(1001));
-		dto.setLogin(RandomString.generateRandomStringByLength(101));
-		dto.setPassword(RandomString.generateRandomStringByLength(33));
+		dto.setName(RandomStringUtils.random(1001));
+		dto.setLogin(RandomStringUtils.random(101));
+		dto.setPassword(RandomStringUtils.random(101));
 		constraintViolations = validator.validate(dto);
 		assertEquals(3, constraintViolations.size());
 		

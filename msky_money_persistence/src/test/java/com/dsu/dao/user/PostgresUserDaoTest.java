@@ -72,4 +72,9 @@ public class PostgresUserDaoTest {
 		userDaoTest.changePersistentIdTestDao();
 	}
 	
+	@Test
+	public void maxLengthFieldsTestDao() {
+		userDaoTest.maxLengthFieldsTestDao();
+	}
+	
 }

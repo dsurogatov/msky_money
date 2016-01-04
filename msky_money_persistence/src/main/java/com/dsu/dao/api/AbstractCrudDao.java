@@ -37,38 +37,8 @@ public abstract class AbstractCrudDao<I> implements CrudDao<I> {
 	 */
 	public I findById(Long id) {
 		I instance = (I) entityManager.find(getPersistentClass(), id);
-		//initialize(instance); TODO warn? realize?
 		return instance;
 	}
-
-	/**
-	 * Obtain LAZY collection for the entity
-	 *
-	 * @param instance
-	 *            - entity
-	 */
-	//	protected void initialize(I instance) {
-	//		PropertyDescriptor origDescriptors[] = PropertyUtils.getPropertyDescriptors(instance);
-	//		for (int i = 0; i < origDescriptors.length; i++) {
-	//			if (origDescriptors[i].getReadMethod() == null) {
-	//				continue;
-	//			}
-	//			String name = origDescriptors[i].getName();
-	//			if ("class".equals(name)) {
-	//				continue; // No point in trying to set an object's class
-	//			}
-	//			Object value = null;
-	//			try {
-	//				value = PropertyUtils.getProperty(instance, name);
-	//				if (value != null) {
-	//					// after extraction of the object collection, filling it
-	//					// from the database, calling the method toString
-	//					value.toString();
-	//				}
-	//			} catch (Exception e) {
-	//			}
-	//		}
-	//	}
 
 	/*
 	 * (non-Javadoc)

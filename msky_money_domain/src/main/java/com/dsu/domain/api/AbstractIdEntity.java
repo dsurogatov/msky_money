@@ -13,13 +13,13 @@ import javax.persistence.MappedSuperclass;
  *
  */
 @MappedSuperclass
-public class BaseEntity implements Idable {
+public abstract class AbstractIdEntity implements IdEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 
-	public BaseEntity() {
+	public AbstractIdEntity() {
 		super();
 	}
 
@@ -35,10 +35,10 @@ public class BaseEntity implements Idable {
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
-		if (!(o instanceof BaseEntity))
+		if (!(o instanceof AbstractIdEntity))
 			return false;
 
-		BaseEntity that = (BaseEntity) o;
+		AbstractIdEntity that = (AbstractIdEntity) o;
 
 		if (getId() != null ? !getId().equals(that.getId())
 				: that.getId() != null)

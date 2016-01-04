@@ -7,7 +7,7 @@ package com.dsu.dto.api;
  * @author nescafe
  *
  */
-public class BaseDTO implements IdableDTO {
+public class BaseDTO implements IdDTO {
 
 	private Long id;
 

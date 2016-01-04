@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.dsu.domain.api.NamedEntity;
+import com.dsu.domain.api.AbstractNamedEntity;
 
 /**
  * @author nescafe
@@ -15,11 +15,11 @@ import com.dsu.domain.api.NamedEntity;
  */
 @Entity
 @Table(name="tbl_user")
-public class User extends NamedEntity {
+public class User extends AbstractNamedEntity {
 
 	@Column(name = "s_login", length = 100, unique = true, nullable = false)
 	private String login;
-	@Column(name = "s_password", length = 32)
+	@Column(name = "s_password", length = 60)
 	private String password;
 	
 	public String getLogin() {

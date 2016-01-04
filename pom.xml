@@ -32,6 +32,13 @@
 			<version>${logback.version}</version>
 		</dependency>
 		
+		<!-- useful libs -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>${commons-lang.version}</version>
+		</dependency>
+		
 		<!-- test scope -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -76,6 +83,7 @@
 		<slf4j.version>1.6.4</slf4j.version>
 		<logback.version>1.0.1</logback.version>
 		<hibernate.version>5.0.4.Final</hibernate.version>
+		<commons-lang.version>2.1</commons-lang.version>
 	</properties>
 
 </project>

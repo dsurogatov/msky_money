@@ -64,4 +64,9 @@ public class HsqldbUserDaoTest {
 	public void changePersistentIdTestDao() {
 		userDaoTest.changePersistentIdTestDao();
 	}
+	
+	@Test
+	public void maxLengthFieldsTestDao() {
+		userDaoTest.maxLengthFieldsTestDao();
+	}
 }
