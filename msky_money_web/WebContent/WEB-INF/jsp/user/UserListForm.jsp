@@ -41,9 +41,9 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="u in ctrl.users">
-						<td><span ng-bind="u.id"></span></td>
-						<td><span ng-bind="u.name"></span></td>
-						<td><span ng-bind="u.login"></span></td>
+						<td style="width: 5%;"><span ng-bind="u.id"></span></td>
+						<td style="width: 50%;"><div class="truncate-ellipsis"><span ng-bind="u.name"></span></div></td>
+						<td><div class="truncate-ellipsis"><span ng-bind="u.login"></span></div></td>
 						<td>
 							<button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Edit</button>
 							<button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>

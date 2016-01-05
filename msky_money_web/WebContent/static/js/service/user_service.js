@@ -9,18 +9,18 @@ App.factory('UserService', [
 
 				fetchAllUsers : function() {
 					return $http.get(
-							'http://localhost:8080/msky_money_web/api/user/')
+							'api/user/')
 							.then(function(response) {
 								return response.data;
 							}, function(errResponse) {
-								console.error('Error while fetching users');
+								console.error('Error while fetching users', errResponse);
 								return $q.reject(errResponse);
 							});
 				},
 				
 				fetchUsersByFields : function(value) {
 					return $http.get(
-							'http://localhost:8080/msky_money_web/api/user/find/' + value)
+							'api/user/find/' + value)
 							.then(function(response) {
 								return response.data;
 							}, function(errResponse) {
@@ -31,7 +31,7 @@ App.factory('UserService', [
 				
 				fetchUser : function(id) {
 					return $http.get(
-							'http://localhost:8080/msky_money_web/api/user/' + id)
+							'api/user/' + id)
 							.then(function(response) {
 								return response.data;
 							}, function(errResponse) {
@@ -42,7 +42,7 @@ App.factory('UserService', [
 
 				createUser : function(user) {
 					return $http.post(
-							'http://localhost:8080/msky_money_web/api/user/',
+							'api/user/',
 							user).then(function(response) {
 						return response.data;
 					}, function(errResponse) {
@@ -53,7 +53,7 @@ App.factory('UserService', [
 
 				updateUser : function(user) {
 					return $http.put(
-							'http://localhost:8080/msky_money_web/api/user/',
+							'api/user/',
 							user).then(function(response) {
 						return response.data;
 					}, function(errResponse) {
@@ -64,7 +64,7 @@ App.factory('UserService', [
 
 				deleteUser : function(id) {
 					return $http.delete(
-							'http://localhost:8080/msky_money_web/api/user/'
+							'api/user/'
 									+ id).then(function(response) {
 						return response.data;
 					}, function(errResponse) {
